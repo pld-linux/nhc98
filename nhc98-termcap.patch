@@ -1,0 +1,15 @@
+--- nhc98-1.10/configure	Thu Oct 18 19:21:45 2001
++++ nhc98-1.10/configure.new	Tue Dec  4 07:29:53 2001
+@@ -352,9 +352,9 @@
+         if $CCC -o curses curses.c -lcurses >/dev/null 2>/dev/null
+         then CURSES="-lcurses"
+         else
+-          if $CCC -o curses curses.c -lcurses -ltermcap >/dev/null 2>/dev/null
+-          then CURSES="-lcurses -ltermcap"
+-          else CURSES="-ltermcap -lcurses"	# don't know a good default?
++          if $CCC -o curses curses.c -lcurses -ltinfo >/dev/null 2>/dev/null
++          then CURSES="-lcurses -ltinfo"
++          else CURSES="-ltinfo -lcurses"	# don't know a good default?
+           fi
+         fi
+       fi
