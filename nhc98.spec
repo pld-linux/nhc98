@@ -14,7 +14,7 @@ Summary:	York compiler for Haskell 98
 Summary(pl):	Kompilator York do Haskella 98
 Name:		nhc98
 Version:	1.10
-Release:	1
+Release:	2
 License:	Freely available
 Group:		Development/Languages
 Group(de):	Entwicklung/Sprachen
@@ -27,6 +27,8 @@ BuildRequires:	jdk
 # for some tools
 BuildRequires:	gmp-devel
 BuildRequires:	ncurses-devel
+Requires:	jre
+# this should be moved to subpackage
 Provides:	haskell
 BuildRequires:	%{compiler}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -91,5 +93,16 @@ rm -rf $RPM_BUILD_ROOT
 %doc *.gz docs_/docs
 %attr(755,root,root) %{_bindir}/*
 %{_includedir}/nhc98
-%{_libdir}/nhc98
+%dir %{_libdir}/nhc98
+%dir %{_libdir}/nhc98/pld-linux
+%dir %{_libdir}/nhc98/*.jar
+%attr (755,root,root) %{_libdir}/nhc98/pld-linux/hat*
+%attr (755,root,root) %{_libdir}/nhc98/pld-linux/nhc98*
+%attr (755,root,root) %{_libdir}/nhc98/pld-linux/hmake*
+%attr (755,root,root) %{_libdir}/nhc98/pld-linux/greencard-nhc98
+%attr (755,root,root) %{_libdir}/nhc98/pld-linux/hp2graph
+%{_libdir}/nhc98/*.a
+%{_libdir}/nhc98/*.o
+%{_libdir}/nhc98/config
+# this file is not %%config
 %{_mandir}/*/*
