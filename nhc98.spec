@@ -16,14 +16,16 @@
 Summary:	York compiler for Haskell 98
 Summary(pl):	Kompilator York do Haskella 98
 Name:		nhc98
-Version:	1.16
+Version:	1.17
 Release:	1
 License:	Free
 Group:		Development/Languages
-Source0:	ftp://ftp.cs.york.ac.uk/pub/haskell/%{name}/%{name}src-%{version}.tar.gz
-# Source0-md5:	a62866b8d966108cba325d0322a3010d
+Source0:	ftp://ftp.cs.york.ac.uk/pub/haskell/nhc98/%{name}src-%{version}.tar.gz
+# Source0-md5:	a8ae8c0273cc8a881a527af4c7219847
 Patch0:		%{name}-termcap.patch
 Patch1:		%{name}-uname.patch
+Patch2:		%{name}-LP64.patch
+Patch3:		%{name}-alpha.patch
 URL:		http://www.cs.york.ac.uk/fp/nhc98/
 BuildRequires:	%{compiler}
 BuildRequires:	jdk
@@ -55,6 +57,10 @@ produkowanie ma造ch binarek, wymagaj帷ych ma這 pami璚i.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%ifarch alpha amd64 ia64 ppc64 sparc64 s390x
+%patch2 -p1
+%endif
+%patch3 -p1
 
 %build
 ./configure \
@@ -64,7 +70,8 @@ produkowanie ma造ch binarek, wymagaj帷ych ma這 pami璚i.
 	--buildwith=%{compiler} \
 	--buildopts=-O
 
-%{__make} OPT="%{rpmcflags}" all
+%{__make} all \
+	OPT="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
