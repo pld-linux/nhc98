@@ -1,0 +1,315 @@
+--- nhc98-1.17/include/newmacros.h.orig	2003-09-24 15:35:20.000000000 +0200
++++ nhc98-1.17/include/newmacros.h	2004-11-26 23:32:11.000000000 +0100
+@@ -127,7 +127,7 @@
+ #define C_VAPTAG(fun)       fun - (NS + 2) + VAP_TAG
+ #define C_CAPTAG(fun,need)  fun - (NS + 2 + (2 * need)) + VAP_TAG
+  
+-#define useLabel(name)		((unsigned)name)
++#define useLabel(name)		((unsigned long)name)
+ 
+  
+ #ifndef DIR_DEL
+--- nhc98-1.17/include/runtime.h.orig	2004-07-19 13:20:35.000000000 +0200
++++ nhc98-1.17/include/runtime.h	2004-11-26 23:43:53.000000000 +0100
+@@ -531,7 +531,7 @@
+ /* useful C-macros */
+ 
+ #define IND_REMOVE(p) \
+-    while((!((int)p & ZAP_BIT)) && (0==(*p & MASK_WTAG))) p = (NodePtr)*p
++    while((!((long)p & ZAP_BIT)) && (0==(*p & MASK_WTAG))) p = (NodePtr)*p
+ /*  while(0==(*p & MASK_WTAG)) p = (NodePtr)*p  ---- NR */
+ 
+ #define IND_REMOVE_T(p,t) \
+--- nhc98-1.17/src/runtime/Kernel/mutator.c.orig	2004-10-05 19:13:37.000000000 +0200
++++ nhc98-1.17/src/runtime/Kernel/mutator.c	2004-11-26 23:48:02.000000000 +0100
+@@ -929,7 +929,7 @@
+               break;
+           }
+         ip  = (CodePtr) ALIGNPTR2(ip+1);
+-          ip += *(((short*) ip) + (int) nodeptr);
++          ip += *(((short*) ip) + (long) nodeptr);
+           Break;
+ 
+       Case(LOOKUPSWITCH):	/* DAVID */
+@@ -944,7 +944,7 @@
+           ip = (CodePtr) ALIGNPTR2(ip+1);
+ 
+           for (t = (short*) ip; sz > 0; t = t + 2, sz--) {
+-              if (((int) nodeptr) == *t) {
++              if (((long) nodeptr) == *t) {
+                   ip += *(t+1);
+                   goto NextInst;
+               }
+--- nhc98-1.17/src/runtime/Kernel/newbuiltin.c.orig	2003-09-25 19:03:50.000000000 +0200
++++ nhc98-1.17/src/runtime/Kernel/newbuiltin.c	2004-11-27 00:35:19.000000000 +0100
+@@ -1,24 +1,24 @@
+ #include "newmacros.h"
+ 
+-extern unsigned C0_Builtin_46PrimToken[];
+-extern unsigned CF__95Builtin_46hputc_95ok[];
+-extern unsigned Start_World[];
+-extern unsigned FN_Prelude_46primLeave[];
+-extern unsigned FN_Builtin_46primUnpackCString[];
+-extern unsigned FN_Builtin_46hgets[];
+-extern unsigned CF_IO_46stdout[];
+-extern unsigned CF_IO_46stdin[];
+-extern unsigned CF_IO_46stderr[];
+-extern unsigned CF_IO_46_95stdin[];
+-extern unsigned CF_IO_46_95stdout[];
+-extern unsigned CF_IO_46_95stderr[];
++extern unsigned long C0_Builtin_46PrimToken[];
++extern unsigned long CF__95Builtin_46hputc_95ok[];
++extern unsigned long Start_World[];
++extern unsigned long FN_Prelude_46primLeave[];
++extern unsigned long FN_Builtin_46primUnpackCString[];
++extern unsigned long FN_Builtin_46hgets[];
++extern unsigned long CF_IO_46stdout[];
++extern unsigned long CF_IO_46stdin[];
++extern unsigned long CF_IO_46stderr[];
++extern unsigned long CF_IO_46_95stdin[];
++extern unsigned long CF_IO_46_95stdout[];
++extern unsigned long CF_IO_46_95stderr[];
+ 
+ extern unsigned C0_Prelude_46_91_93[];
+-extern unsigned CT_primLeave[];
++extern unsigned long CT_primLeave[];
+ extern unsigned ST_primLeave[];
+-extern unsigned CT_unpackCString[];
++extern unsigned long CT_unpackCString[];
+ extern unsigned ST_Builtin_46primUnpackCString[];
+-extern unsigned CT_hgets[];
++extern unsigned long CT_hgets[];
+ extern unsigned ST_Builtin_46hgets[];
+ extern unsigned fo_stdout[];
+ extern unsigned fo_stdin[];
+@@ -32,18 +32,18 @@
+ extern unsigned PP_Builtin_46hgets[];
+ extern unsigned PC_Builtin_46hgets[];
+ 
+-extern unsigned PROF_primToken[];
+-extern unsigned PROF_hputc_ok[];
+-extern unsigned PROF_Start_World[];
+-extern unsigned PROF_primLeave[];
+-extern unsigned PROF_46primUnpackCString[];
+-extern unsigned PROF_46hgets[];
++extern unsigned long PROF_primToken[];
++extern unsigned long PROF_hputc_ok[];
++extern unsigned long PROF_Start_World[];
++extern unsigned long PROF_primLeave[];
++extern unsigned long PROF_46primUnpackCString[];
++extern unsigned long PROF_46hgets[];
+ extern unsigned PM_Prelude[];
+ extern unsigned PM_IO[];
+ extern unsigned PP_compiletime[];
+-extern unsigned PROF_IO_46stdout[];
+-extern unsigned PROF_IO_46stdin[];
+-extern unsigned PROF_IO_46stderr[];
++extern unsigned long PROF_IO_46stdout[];
++extern unsigned long PROF_IO_46stdin[];
++extern unsigned long PROF_IO_46stderr[];
+ extern unsigned PC_primToken[];
+ extern unsigned PC_hputc_ok[];
+ extern unsigned PC_Start_World[];
+@@ -57,7 +57,7 @@
+ #endif
+ 
+ 
+-unsigned C0_Builtin_46PrimToken[] = {
++unsigned long C0_Builtin_46PrimToken[] = {
+   CONSTR(0,0,0)
+ #ifdef PROFILE
+ , useLabel(PROF_primToken)
+@@ -66,7 +66,7 @@
+ , 0
+ #endif
+ };
+-unsigned CF__95Builtin_46hputc_95ok[] = {
++unsigned long CF__95Builtin_46hputc_95ok[] = {
+   CONSTR(1,1,0)
+ #ifdef PROFILE
+ , useLabel(PROF_hputc_ok)
+@@ -76,7 +76,7 @@
+ #endif
+ , useLabel(C0_Prelude_46_91_93)
+ };
+-unsigned Start_World[] = {
++unsigned long Start_World[] = {
+  CONSTR(0,2,0)
+ #ifdef PROFILE
+ , useLabel(PROF_Start_World)
+@@ -91,7 +91,7 @@
+ , bytes2word(1,0,0,1)
+ , useLabel(CT_primLeave)
+ };
+-unsigned FN_Prelude_46primLeave[] = {
++unsigned long FN_Prelude_46primLeave[] = {
+ #ifdef TPROF
+   useLabel(TM_Builtin),
+ #endif
+@@ -100,11 +100,11 @@
+ , 0
+ , useLabel(ST_primLeave)
+ };
+-unsigned CT_primLeave[] = {
++unsigned long CT_primLeave[] = {
+   HW(0,1)
+ , 0
+ };
+-unsigned F0_Prelude_46primLeave[] = {
++unsigned long F0_Prelude_46primLeave[] = {
+   CAPTAG(FN_Prelude_46primLeave,1)
+ #ifdef PROFILE
+ , useLabel(PROF_primLeave)
+@@ -116,7 +116,7 @@
+ , bytes2word(1,0,0,1)
+ , useLabel(CT_unpackCString)
+ };
+-unsigned FN_Builtin_46primUnpackCString[] = {
++unsigned long FN_Builtin_46primUnpackCString[] = {
+ #ifdef TPROF
+   useLabel(TM_Builtin),
+ #endif
+@@ -126,11 +126,11 @@
+ , 0
+ , useLabel(ST_Builtin_46primUnpackCString)
+ };
+-unsigned CT_unpackCString[] = {
++unsigned long CT_unpackCString[] = {
+   HW(0,1)
+ , 0
+ };
+-unsigned F0_Builtin_46primUnpackCString[] = {
++unsigned long F0_Builtin_46primUnpackCString[] = {
+   CAPTAG(FN_Builtin_46primUnpackCString,1)
+ #ifdef PROFILE
+ , useLabel(PROF_46primUnpackCString)
+@@ -138,7 +138,7 @@
+ , 0
+ , 0
+ };
+-unsigned PROF_46primUnpackCString[] = {
++unsigned long PROF_46primUnpackCString[] = {
+   useLabel(PM_Prelude)
+ , useLabel(PP_compiletime)
+ , useLabel(PC_Builtin_46primUnpackCString)
+@@ -147,7 +147,7 @@
+ , bytes2word(1,0,0,1)
+ , useLabel(CT_hgets)
+ };
+-unsigned FN_Builtin_46hgets[] = {
++unsigned long FN_Builtin_46hgets[] = {
+ #ifdef TPROF
+   useLabel(TM_Builtin),
+ #endif
+@@ -157,11 +157,11 @@
+ , 0
+ , useLabel(ST_Builtin_46hgets)
+ };
+-unsigned CT_hgets[] = {
++unsigned long CT_hgets[] = {
+   HW(0,1)
+ , 0
+ };
+-unsigned F0_Builtin_46hgets[] = {
++unsigned long F0_Builtin_46hgets[] = {
+   CAPTAG(FN_Builtin_46hgets,1)
+ #ifdef PROFILE
+ , useLabel(PROF_46hgets)
+@@ -169,14 +169,14 @@
+ , 0
+ , 0
+ };
+-unsigned PROF_46hgets[] = {
++unsigned long PROF_46hgets[] = {
+   useLabel(PM_Prelude)
+ , useLabel(PP_compiletime)
+ , useLabel(PC_Builtin_46hgets)
+ #endif
+ 
+ };
+-unsigned CF_IO_46stdout[] = {
++unsigned long CF_IO_46stdout[] = {
+   CONSTRW(1,0)
+ #ifdef PROFILE
+ , useLabel(PROF_IO_46stdout)
+@@ -187,7 +187,7 @@
+ , useLabel(fo_stdout)
+ 
+ };
+-unsigned CF_IO_46stdin[] = {
++unsigned long CF_IO_46stdin[] = {
+   CONSTRW(1,0)
+ #ifdef PROFILE
+ , useLabel(PROF_IO_46stdin)
+@@ -198,7 +198,7 @@
+ ,  useLabel(fo_stdin)
+ 
+ };
+-unsigned CF_IO_46stderr[] = {
++unsigned long CF_IO_46stderr[] = {
+   CONSTRW(1,0)
+ #ifdef PROFILE
+ , useLabel(PROF_IO_46stderr)
+@@ -212,37 +212,37 @@
+ 
+ #ifdef PROFILE
+ };
+-unsigned PROF_primLeave[] = {
++unsigned long PROF_primLeave[] = {
+   useLabel(PM_Prelude)
+ , useLabel(PP_compiletime)
+ , useLabel(PC_Prelude_46primLeave)
+ };
+-unsigned PROF_primToken[] = {
++unsigned long PROF_primToken[] = {
+   useLabel(PM_Prelude)
+ , useLabel(PP_compiletime)
+ , useLabel(PC_primToken)
+ };
+-unsigned PROF_hputc_ok[] = {
++unsigned long PROF_hputc_ok[] = {
+   useLabel(PM_Prelude)
+ , useLabel(PP_compiletime)
+ , useLabel(PC_hputc_ok)
+ };
+-unsigned PROF_Start_World[] = {
++unsigned long PROF_Start_World[] = {
+   useLabel(PM_Prelude)
+ , useLabel(PP_compiletime)
+ , useLabel(PC_Start_World)
+ };
+-unsigned PROF_IO_46stdin[] = {
++unsigned long PROF_IO_46stdin[] = {
+   useLabel(PM_IO)
+ , useLabel(PP_compiletime)
+ , useLabel(PC_IO_46stdin)
+ };
+-unsigned PROF_IO_46stdout[] = {
++unsigned long PROF_IO_46stdout[] = {
+   useLabel(PM_IO)
+ , useLabel(PP_compiletime)
+ , useLabel(PC_IO_46stdout)
+ };
+-unsigned PROF_IO_46stderr[] = {
++unsigned long PROF_IO_46stderr[] = {
+   useLabel(PM_IO)
+ , useLabel(PP_compiletime)
+ , useLabel(PC_IO_46stderr)
+--- nhc98-1.17/src/runtime/Kernel/collector.c.orig	2004-11-25 17:56:51.000000000 +0100
++++ nhc98-1.17/src/runtime/Kernel/collector.c	2004-11-27 00:30:04.000000000 +0100
+@@ -57,13 +57,14 @@
+ 
+   *isp = spStart = (NodePtr *) bitTable;
+   spEnd = spStart - spSize;
+-
++#if 0
+   if (hpEnd>0xc0000000) {
+     fprintf(stderr,"OS allocated a heap in high memory (>0xc0000000)\n");
+     fprintf(stderr,"    which breaks this program's run-time system.\n");
+     fprintf(stderr,"  hpStart=0x%x, hpEnd=0x%x\n",hpStart,hpEnd);
+     exit(-1);
+   }
++#endif
+   if(spEnd <= (NodePtr*)hpStart) {
+     fprintf(stderr,"No space left for the heap!\n");
+     exit(-1);
