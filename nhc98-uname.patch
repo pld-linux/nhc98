@@ -1,0 +1,11 @@
+--- nhc98-1.16/script/harch~	Thu Feb 13 19:08:43 2003
++++ nhc98-1.16/script/harch	Fri Feb 13 18:29:02 2004
+@@ -14,7 +14,7 @@
+ if uname >/dev/null 2>&1
+ then
+   if uname -p >/dev/null 2>&1
+-  then PROCESSOR=`uname -p`
++  then PROCESSOR=`uname -m`
+     case "$PROCESSOR" in
+     unknown|*\ *)
+       PROCESSOR=`uname -m`
