@@ -1,14 +1,17 @@
 
-# _with_gcc	- build not using ghc haskell compiler, but standard gcc
-#		  (results is slower compiler, but buildtime is much (!)
-#		  shorter, and you don't have to have ghc/nhc/... installed)
+# _with_ghc	- build using ghc haskell compiler
 
 # _with_nhc	- build not using ghc haskell compiler, but nhc98
 #		  (slow compiler in effect)
 
-%{?_with_gcc:%define	compiler	gcc}
+# Due to nhc being old it does not build with new ghc, so default compiler
+# is now gcc
+#		  (results is slower compiler, but buildtime is much (!)
+#		  shorter, and you don't have to have ghc/nhc/... installed)
+
+%{?_with_ghc:%define	compiler	ghc}
 %{?_with_nhc:%define	compiler	nhc98}
-%{!?compiler:%define	compiler	ghc}
+%{!?compiler:%define	compiler	gcc}
 
 Summary:	York compiler for Haskell 98
 Summary(pl):	Kompilator York do Haskella 98
