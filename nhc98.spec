@@ -82,14 +82,12 @@ done
 rm -f $RPM_BUILD_ROOT%{_bindir}/{harch,hi,hmake}
 rm -f $RPM_BUILD_ROOT%{_mandir}/man1/hmake*
 
-gzip -9nf COPYRIGHT INSTALL README
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz docs_/docs
+%doc COPYRIGHT INSTALL README docs_/docs
 %attr(755,root,root) %{_bindir}/*
 %{_includedir}/nhc98
 %dir %{_libdir}/nhc98
