@@ -15,7 +15,7 @@ Summary(pl):	Kompilator York do Haskella 98
 Name:		nhc98
 Version:	1.10
 Release:	2
-License:	Freely available
+License:	Free
 Group:		Development/Languages
 URL:		http://www.cs.york.ac.uk/fp/%{name}/
 Source0:	ftp://ftp.cs.york.ac.uk/pub/haskell/%{name}/%{name}src-%{version}.tar.gz
