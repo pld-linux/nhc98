@@ -17,8 +17,6 @@ Version:	1.10
 Release:	2
 License:	Freely available
 Group:		Development/Languages
-Group(de):	Entwicklung/Sprachen
-Group(pl):	Programowanie/Jêzyki
 URL:		http://www.cs.york.ac.uk/fp/%{name}/
 Source0:	ftp://ftp.cs.york.ac.uk/pub/haskell/%{name}/%{name}src-%{version}.tar.gz
 Patch0:		%{name}-termcap.patch
