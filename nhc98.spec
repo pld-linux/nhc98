@@ -11,10 +11,11 @@
 %{!?compiler:%define	compiler	ghc}
 
 Summary:	York compiler for Haskell 98
+Summary(pl):	Kompilator York do Haskella 98
 Name:		nhc98
 Version:	1.10
 Release:	1
-Copyright:	Freely available
+License:	Freely available
 Group:		Development/Languages
 Group(de):	Entwicklung/Sprachen
 Group(pl):	Programowanie/Jêzyki
@@ -38,6 +39,13 @@ it is small and very portable, and aims to produce small executables
 that run in small amounts of memory. Is a pattern becoming obvious
 here? :-) It also comes with extensive tool support.
 
+%description -l pl
+nhc98 jest w pe³ni wyposa¿onym kompilatorem Haskella 98,
+standardowego, leniwego, funkcyjnego jêzyka programowania. Bazuje na
+nhc13 Niklasa Röjemo, kompilatora wcze¶niejszej wersji tego jêzyka.
+Jest napisany w Haskellu, ma³y i przeno¶ny, jego celem jest
+produkowanie ma³ych binarek, wymagaj±cych ma³o pamiêci.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -51,7 +59,7 @@ here? :-) It also comes with extensive tool support.
 	--buildwith=%{compiler} \
 	--buildopts=-O
 
-%{__make} OPT="$RPM_OPT_FLAGS" all
+%{__make} OPT="%{rpmcflags}" all
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -70,8 +78,8 @@ EOF
 done
 
 # remove hmake
-rm $RPM_BUILD_ROOT%{_bindir}/{harch,hi,hmake}
-rm $RPM_BUILD_ROOT%{_mandir}/man1/hmake*
+rm -f $RPM_BUILD_ROOT%{_bindir}/{harch,hi,hmake}
+rm -f $RPM_BUILD_ROOT%{_mandir}/man1/hmake*
 
 gzip -9nf COPYRIGHT INSTALL README
 
