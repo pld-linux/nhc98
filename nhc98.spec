@@ -19,6 +19,7 @@ License:	Free
 Group:		Development/Languages
 URL:		http://www.cs.york.ac.uk/fp/%{name}/
 Source0:	ftp://ftp.cs.york.ac.uk/pub/haskell/%{name}/%{name}src-%{version}.tar.gz
+# Source0-md5:	159e043a520d2eaa886213b53d50f666
 Patch0:		%{name}-termcap.patch
 Patch1:		%{name}-ghc.patch
 BuildRequires:	jdk
