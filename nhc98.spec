@@ -17,11 +17,12 @@ Version:	1.10
 Release:	2
 License:	Free
 Group:		Development/Languages
-URL:		http://www.cs.york.ac.uk/fp/%{name}/
 Source0:	ftp://ftp.cs.york.ac.uk/pub/haskell/%{name}/%{name}src-%{version}.tar.gz
 # Source0-md5:	159e043a520d2eaa886213b53d50f666
 Patch0:		%{name}-termcap.patch
 Patch1:		%{name}-ghc.patch
+URL:		http://www.cs.york.ac.uk/fp/nhc98/
+BuildRequires:	%{compiler}
 BuildRequires:	jdk
 # for some tools
 BuildRequires:	gmp-devel
@@ -30,7 +31,6 @@ Requires:	jre
 # this should be moved to subpackage
 Requires:	hmake
 Provides:	haskell
-BuildRequires:	%{compiler}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
