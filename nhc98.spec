@@ -4,7 +4,7 @@
 #		  shorter, and you don't have to have ghc/nhc/... installed)
 
 # _with_nhc	- build not using ghc haskell compiler, but nhc98
-#		  (very long time of compilation...)
+#		  (slow compiler in effect)
 
 %{?_with_gcc:%define	compiler	gcc}
 %{?_with_nhc:%define	compiler	nhc98}
@@ -29,6 +29,7 @@ BuildRequires:	gmp-devel
 BuildRequires:	ncurses-devel
 Requires:	jre
 # this should be moved to subpackage
+Requires:	hmake
 Provides:	haskell
 BuildRequires:	%{compiler}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
