@@ -89,7 +89,10 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc COPYRIGHT INSTALL README docs_/docs
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/*nhc98
+%attr(755,root,root) %{_bindir}/hood
+%attr(755,root,root) %{_bindir}/hp2graph
+%attr(755,root,root) %{_bindir}/tprofprel
 %{_includedir}/nhc98
 %dir %{_libdir}/nhc98
 %dir %{_libdir}/nhc98/ix86-Linux
