@@ -1,0 +1,11 @@
+--- nhc98-1.17/src/runtime/Kernel/mutator.c.orig	2004-11-26 23:48:48.000000000 +0100
++++ nhc98-1.17/src/runtime/Kernel/mutator.c	2004-11-27 00:00:29.000000000 +0100
+@@ -598,7 +598,7 @@
+   Case(GT_W): PRIM_CMP2_INT(>);
+   Case(GE_W): PRIM_CMP2_INT(>=);
+ 
+-#ifndef __alpha /* Float is Double on alpha */
++#if !defined(__alpha) || defined(__linux__)  /* Float is Double on alpha, but not on Linux */
+ #define PRIM_OP2_FLOAT(op) \
+     { NodePtr nodeptr = *sp++; \
+ 	float a,b;                 \
