@@ -1,0 +1,12 @@
+diff -ur hmake-2.03/script/confhc hmake-2.03.new/script/confhc
+--- hmake-2.03/script/confhc	Tue Dec  4 12:52:09 2001
++++ hmake-2.03.new/script/confhc	Tue Oct  2 15:50:56 2001
+@@ -161,7 +161,7 @@
+   else
+     #GHCDIR=`ghc-pkg --show-package std --field import_dirs`
+     #GHCINCDIR=`dirname $GHCDIR`
++    GHCDIR=`grep '^TOPDIROPT' ${whichGHC} | head -1 | sed s/^TOPDIROPT=\"\-B// | sed s/\"\;$//`
+-    GHCDIR=`grep '^libdir' ${whichGHC} | head -1 | sed 's/^libdir=.\(.*\)./\1/'`
+     if [ -d $GHCDIR/imports ]
+     then GHCINCDIR=$GHCDIR/imports
+     else GHCDIR=""
