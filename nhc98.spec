@@ -1,6 +1,6 @@
 
 # _with_gcc	- build not using ghc haskell compiler, but standard gcc
-#		  (results is slower compiler, but buildtime is much (!) 
+#		  (results is slower compiler, but buildtime is much (!)
 #		  shorter, and you don't have to have ghc/nhc/... installed)
 
 # _with_nhc	- build not using ghc haskell compiler, but nhc98
