@@ -24,9 +24,9 @@ Source0:	ftp://ftp.cs.york.ac.uk/pub/haskell/%{name}/%{name}src-%{version}.tar.g
 Patch0:		%{name}-termcap.patch
 Patch1:		%{name}-ghc.patch
 BuildRequires:	jdk
+# for some tools
 BuildRequires:	gmp-devel
 BuildRequires:	ncurses-devel
-# for some tools
 Provides:	haskell
 BuildRequires:	%{compiler}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
