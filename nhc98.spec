@@ -13,14 +13,14 @@
 Summary:	York compiler for Haskell 98
 Summary(pl):	Kompilator York do Haskella 98
 Name:		nhc98
-Version:	1.10
-Release:	2
+Version:	1.16
+Release:	1
 License:	Free
 Group:		Development/Languages
 Source0:	ftp://ftp.cs.york.ac.uk/pub/haskell/%{name}/%{name}src-%{version}.tar.gz
-# Source0-md5:	159e043a520d2eaa886213b53d50f666
+# Source0-md5:	a62866b8d966108cba325d0322a3010d
 Patch0:		%{name}-termcap.patch
-Patch1:		%{name}-ghc.patch
+Patch1:		%{name}-uname.patch
 URL:		http://www.cs.york.ac.uk/fp/nhc98/
 BuildRequires:	%{compiler}
 BuildRequires:	jdk
@@ -92,15 +92,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_includedir}/nhc98
 %dir %{_libdir}/nhc98
-%dir %{_libdir}/nhc98/pld-linux
+%dir %{_libdir}/nhc98/ix86-Linux
 %dir %{_libdir}/nhc98/*.jar
-%attr (755,root,root) %{_libdir}/nhc98/pld-linux/hat*
-%attr (755,root,root) %{_libdir}/nhc98/pld-linux/nhc98*
-%attr (755,root,root) %{_libdir}/nhc98/pld-linux/hmake*
-%attr (755,root,root) %{_libdir}/nhc98/pld-linux/greencard-nhc98
-%attr (755,root,root) %{_libdir}/nhc98/pld-linux/hp2graph
-%{_libdir}/nhc98/*.a
-%{_libdir}/nhc98/*.o
-%{_libdir}/nhc98/config
+%attr (755,root,root) %{_libdir}/nhc98/ix86-Linux/nhc98*
+%attr (755,root,root) %{_libdir}/nhc98/ix86-Linux/hmake*
+%attr (755,root,root) %{_libdir}/nhc98/ix86-Linux/greencard-nhc98
+%attr (755,root,root) %{_libdir}/nhc98/ix86-Linux/hp2graph
+%{_libdir}/nhc98/ix86-Linux/*.a
+%{_libdir}/nhc98/ix86-Linux/*.o
+%{_libdir}/nhc98/ix86-Linux/config
 # this file is not %%config
 %{_mandir}/*/*
