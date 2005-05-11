@@ -32,6 +32,7 @@ BuildRequires:	jdk
 # for some tools
 BuildRequires:	gmp-devel
 BuildRequires:	ncurses-devel
+BuildRequires:	rpmbuild(macros) >= 1.213
 Requires:	jre
 # this should be moved to subpackage
 Requires:	hmake
@@ -57,7 +58,7 @@ produkowanie ma³ych binarek, wymagaj±cych ma³o pamiêci.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%ifarch alpha amd64 ia64 ppc64 sparc64 s390x
+%ifarch %{x8664} alpha ia64 ppc64 s390x sparc64
 %patch2 -p1
 %endif
 %patch3 -p1
