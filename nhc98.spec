@@ -1,8 +1,6 @@
-
-# _with_ghc	- build using ghc haskell compiler
-
-# _with_nhc	- build not using ghc haskell compiler, but nhc98
-#		  (slow compiler in effect)
+%bcond_with	ghc	# build using ghc haskell compiler
+%bcond_with	nhc	# build not using ghc haskell compiler, but nhc98 (slow compiler in effect)
+%bcond_with	java	# build with Java support
 
 # Due to nhc being old it does not build with new ghc, so default compiler
 # is now gcc
@@ -16,24 +14,24 @@
 Summary:	York compiler for Haskell 98
 Summary(pl):	Kompilator York do Haskella 98
 Name:		nhc98
-Version:	1.17
+Version:	1.18
 Release:	1
 License:	Free
 Group:		Development/Languages
 Source0:	ftp://ftp.cs.york.ac.uk/pub/haskell/nhc98/%{name}src-%{version}.tar.gz
-# Source0-md5:	a8ae8c0273cc8a881a527af4c7219847
+# Source0-md5:	f38b74481ec01a066cc9314b7bd18c90
 Patch0:		%{name}-termcap.patch
 Patch1:		%{name}-uname.patch
 Patch2:		%{name}-LP64.patch
 Patch3:		%{name}-alpha.patch
 URL:		http://www.cs.york.ac.uk/fp/nhc98/
 BuildRequires:	%{compiler}
-BuildRequires:	jdk
+%{?with_java:BuildRequires:	jdk}
 # for some tools
 BuildRequires:	gmp-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	rpmbuild(macros) >= 1.213
-Requires:	jre
+%{?with_java:Requires:	jre}
 # this should be moved to subpackage
 Requires:	hmake
 Provides:	haskell
@@ -100,6 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc COPYRIGHT INSTALL README docs_/docs
+%attr(755,root,root) %{_bindir}/cpphs
 %attr(755,root,root) %{_bindir}/*nhc98
 %attr(755,root,root) %{_bindir}/hood
 %attr(755,root,root) %{_bindir}/hp2graph
@@ -108,6 +107,8 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/nhc98
 %dir %{_libdir}/nhc98/ix86-Linux
 %dir %{_libdir}/nhc98/*.jar
+%attr (755,root,root) %{_libdir}/nhc98/ix86-Linux/cpphs
+%attr (755,root,root) %{_libdir}/nhc98/ix86-Linux/hsc2hs
 %attr (755,root,root) %{_libdir}/nhc98/ix86-Linux/nhc98*
 %attr (755,root,root) %{_libdir}/nhc98/ix86-Linux/hmake*
 %attr (755,root,root) %{_libdir}/nhc98/ix86-Linux/greencard-nhc98
