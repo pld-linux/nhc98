@@ -81,7 +81,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install
 
 # correct hardcoded paths in some scripts
-for f in $RPM_BUILD_ROOT%{_prefix}/{bin/{harch,hp2graph,hood,nhc98,hat-trail},lib/nhc98/ix86-Linux/hmake.config} ; do
+for f in $RPM_BUILD_ROOT%{_prefix}/{bin/{harch,hp2graph,hood,nhc98,hat-trail},lib/nhc98/*-Linux/hmake.config} ; do
 ed -s $f <<EOF || :
 ,s|$RPM_BUILD_ROOT||g
 wq
@@ -105,16 +105,16 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/tprofprel
 %{_includedir}/nhc98
 %dir %{_libdir}/nhc98
-%dir %{_libdir}/nhc98/ix86-Linux
+%dir %{_libdir}/nhc98/*-Linux
 %dir %{_libdir}/nhc98/*.jar
-%attr (755,root,root) %{_libdir}/nhc98/ix86-Linux/cpphs
-%attr (755,root,root) %{_libdir}/nhc98/ix86-Linux/hsc2hs
-%attr (755,root,root) %{_libdir}/nhc98/ix86-Linux/nhc98*
-%attr (755,root,root) %{_libdir}/nhc98/ix86-Linux/hmake*
-%attr (755,root,root) %{_libdir}/nhc98/ix86-Linux/greencard-nhc98
-%attr (755,root,root) %{_libdir}/nhc98/ix86-Linux/hp2graph
-%{_libdir}/nhc98/ix86-Linux/*.a
-%{_libdir}/nhc98/ix86-Linux/*.o
-%{_libdir}/nhc98/ix86-Linux/config
+%attr (755,root,root) %{_libdir}/nhc98/*-Linux/cpphs
+%attr (755,root,root) %{_libdir}/nhc98/*-Linux/hsc2hs
+%attr (755,root,root) %{_libdir}/nhc98/*-Linux/nhc98*
+%attr (755,root,root) %{_libdir}/nhc98/*-Linux/hmake*
+%attr (755,root,root) %{_libdir}/nhc98/*-Linux/greencard-nhc98
+%attr (755,root,root) %{_libdir}/nhc98/*-Linux/hp2graph
+%{_libdir}/nhc98/*-Linux/*.a
+%{_libdir}/nhc98/*-Linux/*.o
+%{_libdir}/nhc98/*-Linux/config
 # this file is not %%config
 %{_mandir}/*/*
