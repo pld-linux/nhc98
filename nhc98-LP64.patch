@@ -295,16 +295,15 @@
    useLabel(PM_IO)
  , useLabel(PP_compiletime)
  , useLabel(PC_IO_46stderr)
---- nhc98-1.17/src/runtime/Kernel/collector.c.orig	2004-11-25 17:56:51.000000000 +0100
-+++ nhc98-1.17/src/runtime/Kernel/collector.c	2004-11-27 00:30:04.000000000 +0100
-@@ -57,13 +57,14 @@
- 
+--- nhc98-1.18/src/runtime/Kernel/collector.c~	2005-07-04 00:08:11.632656144 +0000
++++ nhc98-1.18/src/runtime/Kernel/collector.c	2005-07-04 00:09:52.648299432 +0000
+@@ -58,12 +58,14 @@
    *isp = spStart = (NodePtr *) bitTable;
    spEnd = spStart - spSize;
--
+ 
 +#if 0
-   if (hpEnd>0xc0000000) {
-     fprintf(stderr,"OS allocated a heap in high memory (>0xc0000000)\n");
+   if ((long)hpEnd>0x80000000) {
+     fprintf(stderr,"OS allocated a heap in high memory (>0x80000000)\n");
      fprintf(stderr,"    which breaks this program's run-time system.\n");
      fprintf(stderr,"  hpStart=0x%x, hpEnd=0x%x\n",hpStart,hpEnd);
      exit(-1);
