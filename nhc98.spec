@@ -12,7 +12,7 @@
 %{!?compiler:%define	compiler	gcc}
 
 Summary:	York compiler for Haskell 98
-Summary(pl):	Kompilator York do Haskella 98
+Summary(pl.UTF-8):   Kompilator York do Haskella 98
 Name:		nhc98
 Version:	1.18
 Release:	1
@@ -39,18 +39,18 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 nhc98 is a fully-fledged compiler for Haskell 98, the standard lazy
-functional programming language. It based on Niklas Röjemo's nhc13, a
+functional programming language. It based on Niklas RÃ¶jemo's nhc13, a
 compiler for an earlier version of the language. Written in Haskell,
 it is small and very portable, and aims to produce small executables
 that run in small amounts of memory. Is a pattern becoming obvious
 here? :-) It also comes with extensive tool support.
 
-%description -l pl
-nhc98 jest w pe³ni wyposa¿onym kompilatorem Haskella 98,
-standardowego, leniwego, funkcyjnego jêzyka programowania. Bazuje na
-nhc13 Niklasa Röjemo, kompilatora wcze¶niejszej wersji tego jêzyka.
-Jest napisany w Haskellu, ma³y i przeno¶ny, jego celem jest
-produkowanie ma³ych binarek, wymagaj±cych ma³o pamiêci.
+%description -l pl.UTF-8
+nhc98 jest w peÅ‚ni wyposaÅ¼onym kompilatorem Haskella 98,
+standardowego, leniwego, funkcyjnego jÄ™zyka programowania. Bazuje na
+nhc13 Niklasa RÃ¶jemo, kompilatora wczeÅ›niejszej wersji tego jÄ™zyka.
+Jest napisany w Haskellu, maÅ‚y i przenoÅ›ny, jego celem jest
+produkowanie maÅ‚ych binarek, wymagajÄ…cych maÅ‚o pamiÄ™ci.
 
 %prep
 %setup -q
