@@ -1,7 +1,9 @@
+#
+# Conditional build:
 %bcond_with	ghc	# build using ghc haskell compiler
 %bcond_with	nhc	# build not using ghc haskell compiler, but nhc98 (slow compiler in effect)
 %bcond_with	java	# build with Java support
-
+#
 # Due to nhc being old it does not build with new ghc, so default compiler
 # is now gcc
 #		  (results is slower compiler, but buildtime is much (!)
@@ -38,6 +40,14 @@ Provides:	haskell
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
+nhc98 is a fully-fledged compiler for Haskell 98, the standard lazy
+functional programming language. It based on Niklas Roejemo's nhc13, a
+compiler for an earlier version of the language. Written in Haskell,
+it is small and very portable, and aims to produce small executables
+that run in small amounts of memory. Is a pattern becoming obvious
+here? :-) It also comes with extensive tool support.
+
+%description -l en.UTF-8
 nhc98 is a fully-fledged compiler for Haskell 98, the standard lazy
 functional programming language. It based on Niklas Röjemo's nhc13, a
 compiler for an earlier version of the language. Written in Haskell,
