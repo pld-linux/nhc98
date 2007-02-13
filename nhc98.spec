@@ -14,7 +14,7 @@
 %{!?compiler:%define	compiler	gcc}
 
 Summary:	York compiler for Haskell 98
-Summary(pl.UTF-8):   Kompilator York do Haskella 98
+Summary(pl.UTF-8):	Kompilator York do Haskella 98
 Name:		nhc98
 Version:	1.18
 Release:	1
