@@ -36,7 +36,6 @@ BuildRequires:	rpmbuild(macros) >= 1.213
 %{?with_java:Requires:	jre}
 # this should be moved to subpackage
 Requires:	hmake
-Provides:	haskell
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
