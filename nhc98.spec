@@ -63,12 +63,12 @@ produkowanie małych binarek, wymagających mało pamięci.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 %ifarch %{x8664} alpha ia64 ppc64 s390x sparc64
-%patch2 -p1
+%patch -P2 -p1
 %endif
-%patch3 -p1
+%patch -P3 -p1
 
 %build
 ./configure \
